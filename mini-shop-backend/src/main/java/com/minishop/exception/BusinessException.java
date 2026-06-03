@@ -1,0 +1,23 @@
+package com.minishop.exception;
+
+import lombok.Getter;
+
+/**
+ * 自定义业务异常类
+ */
+@Getter
+public class BusinessException extends RuntimeException {
+
+    /** 业务错误码 */
+    private final int code;
+
+    public BusinessException(int code, String message) {
+        super(message);
+        this.code = code;
+    }
+
+    public BusinessException(ErrorCode errorCode) {
+        super(errorCode.getMessage());
+        this.code = errorCode.getCode();
+    }
+}

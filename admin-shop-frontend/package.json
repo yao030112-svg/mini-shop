@@ -1,0 +1,38 @@
+{
+  "name": "mini-shop-frontend",
+  "version": "1.0.0",
+  "description": "淘宝类型购物小程序前端",
+  "main": "main.js",
+  "scripts": {
+    "dev:mp-weixin": "cross-env NODE_ENV=development UNI_PLATFORM=mp-weixin vue-cli-service uni-build --watch",
+    "build:mp-weixin": "cross-env NODE_ENV=production UNI_PLATFORM=mp-weixin vue-cli-service uni-build",
+    "dev:h5": "cross-env NODE_ENV=development UNI_PLATFORM=h5 vue-cli-service uni-serve",
+    "build:h5": "cross-env NODE_ENV=production UNI_PLATFORM=h5 vue-cli-service uni-build"
+  },
+  "dependencies": {
+    "@dcloudio/uni-app": "2.0.2-3081220230817001",
+    "@dcloudio/uni-app-plus": "2.0.2-3081220230817001",
+    "@dcloudio/uni-h5": "2.0.2-3081220230817001",
+    "@dcloudio/uni-mp-weixin": "2.0.2-3081220230817001",
+    "@dcloudio/uni-stat": "2.0.2-3081220230817001",
+    "core-js": "3.8.3",
+    "flyio": "0.6.2",
+    "vue": "2.6.14",
+    "vuex": "3.6.2"
+  },
+  "devDependencies": {
+    "@dcloudio/types": "3.3.2",
+    "@dcloudio/uni-automator": "2.0.2-3081220230817001",
+    "@dcloudio/uni-cli-i18n": "^2.0.2-5000720260410001",
+    "@dcloudio/uni-cli-shared": "2.0.2-3081220230817001",
+    "@dcloudio/vue-cli-plugin-uni": "2.0.2-3081220230817001",
+    "@vue/cli-plugin-babel": "5.0.8",
+    "@vue/cli-service": "5.0.8",
+    "cross-env": "^7.0.3",
+    "postcss-comment": "2.0.0"
+  },
+  "browserslist": [
+    "Android >= 4.4",
+    "ios >= 9"
+  ]
+}

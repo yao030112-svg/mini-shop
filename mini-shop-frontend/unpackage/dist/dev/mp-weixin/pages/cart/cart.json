@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "购物车",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "empty": "/components/Empty",
+    "price": "/components/Price",
+    "number-box": "/components/NumberBox"
+  }
+}

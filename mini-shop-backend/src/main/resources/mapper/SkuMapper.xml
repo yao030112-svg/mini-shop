@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.minishop.mapper.SkuMapper">
+
+    <!-- 结果映射 -->
+    <resultMap id="SkuResultMap" type="com.minishop.entity.Sku">
+        <id property="id" column="id"/>
+        <result property="productId" column="product_id"/>
+        <result property="price" column="price"/>
+        <result property="stock" column="stock"/>
+        <result property="specDesc" column="spec_desc"/>
+        <result property="image" column="image"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <!-- 根据商品ID查询SKU列表 -->
+    <select id="selectByProductId" resultMap="SkuResultMap">
+        SELECT id, product_id, price, stock, spec_desc, image, create_time, update_time
+        FROM sku
+        WHERE product_id = #{productId}
+    </select>
+
+    <!-- 根据ID查询SKU -->
+    <select id="findById" resultMap="SkuResultMap">
+        SELECT id, product_id, price, stock, spec_desc, image, create_time, update_time
+        FROM sku
+        WHERE id = #{id}
+    </select>
+
+    <!-- 新增SKU -->
+    <insert id="insert" parameterType="com.minishop.entity.Sku" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sku (product_id, price, stock, spec_desc, image)
+        VALUES (#{productId}, #{price}, #{stock}, #{specDesc}, #{image})
+    </insert>
+
+    <!-- 根据商品ID删除所有SKU -->
+    <delete id="deleteByProductId">
+        DELETE FROM sku
+        WHERE product_id = #{productId}
+    </delete>
+
+    <!-- 查询商品的最低价格 -->
+    <select id="selectMinPriceByProductId" resultType="java.math.BigDecimal">
+        SELECT MIN(price)
+        FROM sku
+        WHERE product_id = #{productId}
+    </select>
+
+    <!-- 乐观锁扣减库存 -->
+    <update id="deductStock">
+        UPDATE sku
+        SET stock = stock - #{quantity}
+        WHERE id = #{id} AND stock >= #{quantity}
+    </update>
+
+    <!-- 恢复库存 -->
+    <update id="restoreStock">
+        UPDATE sku
+        SET stock = stock + #{quantity}
+        WHERE id = #{id}
+    </update>
+
+</mapper>

@@ -1,0 +1,1 @@
+<view class="empty data-v-9ec67afc"><block wx:if="{{icon}}"><image class="empty__icon data-v-9ec67afc" src="{{icon}}" mode="aspectFit"></image></block><block wx:else><view class="empty__default-icon data-v-9ec67afc"><text class="empty__default-icon-text data-v-9ec67afc">∅</text></view></block><text class="empty__text data-v-9ec67afc">{{text}}</text></view>

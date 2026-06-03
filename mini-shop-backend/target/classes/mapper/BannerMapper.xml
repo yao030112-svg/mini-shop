@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.minishop.mapper.BannerMapper">
+
+    <!-- 结果映射 -->
+    <resultMap id="BannerResultMap" type="com.minishop.entity.Banner">
+        <id property="id" column="id"/>
+        <result property="imageUrl" column="image_url"/>
+        <result property="linkUrl" column="link_url"/>
+        <result property="sortOrder" column="sort_order"/>
+        <result property="status" column="status"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <!-- 通用查询列 -->
+    <sql id="Base_Column_List">
+        id, image_url, link_url, sort_order, status, create_time
+    </sql>
+
+    <!-- 查询所有启用的轮播图（按 sort_order 降序） -->
+    <select id="selectActiveList" resultMap="BannerResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM banner
+        WHERE status = 1
+        ORDER BY sort_order DESC
+    </select>
+
+    <!-- 查询所有轮播图列表（管理端使用） -->
+    <select id="selectList" resultMap="BannerResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM banner
+        ORDER BY sort_order DESC, create_time DESC
+    </select>
+
+    <!-- 根据ID查询轮播图 -->
+    <select id="findById" resultMap="BannerResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM banner
+        WHERE id = #{id}
+    </select>
+
+    <!-- 新增轮播图 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO banner (image_url, link_url, sort_order, status)
+        VALUES (#{imageUrl}, #{linkUrl}, #{sortOrder}, #{status})
+    </insert>
+
+    <!-- 更新轮播图 -->
+    <update id="update">
+        UPDATE banner
+        SET image_url = #{imageUrl},
+            link_url = #{linkUrl},
+            sort_order = #{sortOrder},
+            status = #{status}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 删除轮播图 -->
+    <delete id="deleteById">
+        DELETE FROM banner WHERE id = #{id}
+    </delete>
+
+    <!-- 更新轮播图状态 -->
+    <update id="updateStatus">
+        UPDATE banner
+        SET status = #{status}
+        WHERE id = #{id}
+    </update>
+
+</mapper>

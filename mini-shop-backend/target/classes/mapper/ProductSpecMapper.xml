@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.minishop.mapper.ProductSpecMapper">
+
+    <!-- 结果映射（含嵌套规格值） -->
+    <resultMap id="ProductSpecResultMap" type="com.minishop.entity.ProductSpec">
+        <id property="id" column="ps_id"/>
+        <result property="productId" column="product_id"/>
+        <result property="name" column="ps_name"/>
+        <result property="sortOrder" column="ps_sort_order"/>
+        <collection property="values" ofType="com.minishop.entity.SpecValue">
+            <id property="id" column="sv_id"/>
+            <result property="specId" column="sv_spec_id"/>
+            <result property="value" column="sv_value"/>
+            <result property="sortOrder" column="sv_sort_order"/>
+        </collection>
+    </resultMap>
+
+    <!-- 根据商品ID查询规格列表（含规格值） -->
+    <select id="selectByProductId" resultMap="ProductSpecResultMap">
+        SELECT
+            ps.id AS ps_id,
+            ps.product_id,
+            ps.name AS ps_name,
+            ps.sort_order AS ps_sort_order,
+            sv.id AS sv_id,
+            sv.spec_id AS sv_spec_id,
+            sv.value AS sv_value,
+            sv.sort_order AS sv_sort_order
+        FROM product_spec ps
+        LEFT JOIN spec_value sv ON sv.spec_id = ps.id
+        WHERE ps.product_id = #{productId}
+        ORDER BY ps.sort_order ASC, sv.sort_order ASC
+    </select>
+
+    <!-- 新增规格维度 -->
+    <insert id="insert" parameterType="com.minishop.entity.ProductSpec" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO product_spec (product_id, name, sort_order)
+        VALUES (#{productId}, #{name}, #{sortOrder})
+    </insert>
+
+    <!-- 根据商品ID删除所有规格维度 -->
+    <delete id="deleteByProductId">
+        DELETE FROM product_spec
+        WHERE product_id = #{productId}
+    </delete>
+
+</mapper>

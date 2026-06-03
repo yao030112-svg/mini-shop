@@ -1,0 +1,39 @@
+{
+    "name" : "迷你商城",
+    "appid" : "__UNI__PLACEHOLDER",
+    "description" : "淘宝类型购物小程序",
+    "versionName" : "1.0.0",
+    "versionCode" : "100",
+    "transformPx" : false,
+    "app-plus" : {
+        "usingComponents" : true,
+        "splashscreen" : {
+            "alwaysShowBeforeRender" : true,
+            "waiting" : true,
+            "autoclose" : true,
+            "delay" : 0
+        }
+    },
+    "mp-weixin" : {
+        "appid" : "wx0000000000000000",
+        "setting" : {
+            "urlCheck" : true,
+            "es6" : true,
+            "postcss" : true,
+            "minified" : true
+        },
+        "usingComponents" : true,
+        "permission" : {
+            "scope.userLocation" : {
+                "desc" : "用于获取您的位置信息"
+            }
+        }
+    },
+    "h5" : {
+        "devServer" : {
+            "port" : 8081,
+            "disableHostCheck" : true
+        },
+        "title" : "迷你商城"
+    }
+}

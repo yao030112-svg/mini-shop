@@ -1,0 +1,152 @@
+
+.admin-order.data-v-79ea1310 {
+  min-height: 100vh;
+  background: #f5f6fa;
+  padding-bottom: 120rpx;
+}
+.page-header.data-v-79ea1310 {
+  background: #fff;
+  padding: 30rpx;
+  border-bottom: 1rpx solid #eee;
+}
+.page-title.data-v-79ea1310 {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+.filter-bar.data-v-79ea1310 {
+  display: flex;
+  background: #fff;
+  padding: 16rpx 24rpx;
+  margin-bottom: 16rpx;
+  overflow-x: auto;
+}
+.filter-item.data-v-79ea1310 {
+  flex-shrink: 0;
+  padding: 12rpx 24rpx;
+  font-size: 24rpx;
+  color: #666;
+  border-radius: 24rpx;
+  margin-right: 16rpx;
+  background: #f5f5f5;
+}
+.filter-item.active.data-v-79ea1310 {
+  background: #ff6600;
+  color: #fff;
+}
+.order-list.data-v-79ea1310 {
+  padding: 0 24rpx;
+}
+.order-card.data-v-79ea1310 {
+  background: #fff;
+  border-radius: 12rpx;
+  padding: 24rpx;
+  margin-bottom: 16rpx;
+}
+.order-header.data-v-79ea1310 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+  padding-bottom: 16rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+.order-no.data-v-79ea1310 {
+  font-size: 26rpx;
+  color: #333;
+  font-weight: bold;
+}
+.order-status.data-v-79ea1310 {
+  font-size: 24rpx;
+  padding: 4rpx 16rpx;
+  border-radius: 4rpx;
+}
+.status-0.data-v-79ea1310 {
+  background: #fff7e6;
+  color: #ff9900;
+}
+.status-1.data-v-79ea1310 {
+  background: #e6f7e6;
+  color: #07c160;
+}
+.status-2.data-v-79ea1310 {
+  background: #e6f0ff;
+  color: #1890ff;
+}
+.status-3.data-v-79ea1310 {
+  background: #f0f0f0;
+  color: #666;
+}
+.status-4.data-v-79ea1310 {
+  background: #f5f5f5;
+  color: #999;
+}
+.status-5.data-v-79ea1310 {
+  background: #ffe6e6;
+  color: #ee0a24;
+}
+.order-body.data-v-79ea1310 {
+  margin-bottom: 16rpx;
+}
+.order-info.data-v-79ea1310 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+.info-item.data-v-79ea1310 {
+  font-size: 24rpx;
+  color: #666;
+}
+.order-footer.data-v-79ea1310 {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16rpx;
+  padding-top: 16rpx;
+  border-top: 1rpx solid #f5f5f5;
+}
+.action-btn.data-v-79ea1310 {
+  height: 56rpx;
+  line-height: 56rpx;
+  font-size: 24rpx;
+  border-radius: 6rpx;
+  padding: 0 32rpx;
+}
+.ship-btn.data-v-79ea1310 {
+  background: #1890ff;
+  color: #fff;
+  border: none;
+}
+.refund-btn.data-v-79ea1310 {
+  background: #fff;
+  color: #ee0a24;
+  border: 1rpx solid #ee0a24;
+}
+.empty.data-v-79ea1310 {
+  text-align: center;
+  padding: 100rpx 0;
+  color: #999;
+  font-size: 28rpx;
+}
+.admin-nav.data-v-79ea1310 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  background: #fff;
+  border-top: 1rpx solid #eee;
+  height: 100rpx;
+}
+.nav-item.data-v-79ea1310 {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26rpx;
+  color: #666;
+}
+.nav-item.active.data-v-79ea1310 {
+  color: #ff6600;
+  font-weight: bold;
+}
+

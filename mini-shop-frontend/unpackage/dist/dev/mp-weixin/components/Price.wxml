@@ -1,0 +1,1 @@
+<view class="{{['price','data-v-f2e8df04','price--'+size]}}"><text class="price__symbol data-v-f2e8df04">¥</text><text class="price__value data-v-f2e8df04">{{formatValue}}</text></view>

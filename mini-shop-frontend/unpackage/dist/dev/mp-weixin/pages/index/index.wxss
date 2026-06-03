@@ -1,0 +1,57 @@
+@charset "UTF-8";
+/* 全局样式变量 */
+/* 主题色 */
+/* 文字颜色 */
+/* 背景色 */
+/* 边框颜色 */
+/* 价格颜色 */
+/* 成功/警告/错误 */
+/* 间距 */
+/* 字体大小 */
+/* 圆角 */
+.index.data-v-57280228 {
+  min-height: 100vh;
+  background-color: #f8f8f8;
+}
+/* 轮播图 */
+.banner-swiper.data-v-57280228 {
+  width: 100%;
+  height: 360rpx;
+}
+.banner-image.data-v-57280228 {
+  width: 100%;
+  height: 100%;
+}
+/* 区块 */
+.section.data-v-57280228 {
+  padding: 16rpx;
+}
+.section__header.data-v-57280228 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+.section__title.data-v-57280228 {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+}
+/* 商品网格 - 两列布局 */
+.product-grid.data-v-57280228 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.product-grid__item.data-v-57280228 {
+  width: 48.5%;
+  margin-bottom: 16rpx;
+}
+/* 加载状态 */
+.load-status.data-v-57280228 {
+  padding: 32rpx 0;
+  text-align: center;
+}
+.load-status__text.data-v-57280228 {
+  font-size: 24rpx;
+  color: #999999;
+}

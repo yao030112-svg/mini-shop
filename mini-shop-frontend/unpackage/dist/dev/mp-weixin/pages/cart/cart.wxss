@@ -1,0 +1,215 @@
+@charset "UTF-8";
+/* 全局样式变量 */
+/* 主题色 */
+/* 文字颜色 */
+/* 背景色 */
+/* 边框颜色 */
+/* 价格颜色 */
+/* 成功/警告/错误 */
+/* 间距 */
+/* 字体大小 */
+/* 圆角 */
+.cart.data-v-0f00adf4 {
+  min-height: 100vh;
+  background-color: #f8f8f8;
+  padding-bottom: 140rpx;
+}
+/* 自定义导航栏 */
+.cart__navbar.data-v-0f00adf4 {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 88rpx;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #eeeeee;
+  z-index: 1000;
+}
+.cart__navbar-back.data-v-0f00adf4 {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.cart__navbar-back-icon.data-v-0f00adf4 {
+  font-size: 60rpx;
+  color: #333333;
+  font-weight: bold;
+}
+.cart__navbar-title.data-v-0f00adf4 {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+}
+.cart__navbar-placeholder.data-v-0f00adf4 {
+  width: 60rpx;
+}
+/* 购物车列表 */
+.cart__list.data-v-0f00adf4 {
+  padding-top: 16rpx;
+}
+/* 复选框 */
+.cart__checkbox.data-v-0f00adf4 {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  border: 2rpx solid #eeeeee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.cart__checkbox--checked.data-v-0f00adf4 {
+  background-color: #ff6600;
+  border-color: #ff6600;
+}
+.cart__checkbox-icon.data-v-0f00adf4 {
+  font-size: 24rpx;
+  color: #ffffff;
+}
+/* 购物车条目 */
+.cart__item.data-v-0f00adf4 {
+  margin-bottom: 2rpx;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+.cart__item-inner.data-v-0f00adf4 {
+  position: relative;
+  height: 220rpx;
+}
+/* 滑动区域 */
+.cart__movable-area.data-v-0f00adf4 {
+  width: 100%;
+  height: 220rpx;
+}
+.cart__movable-view.data-v-0f00adf4 {
+  width: calc(100% + 130rpx);
+  height: 220rpx;
+}
+/* 商品内容 */
+.cart__item-content.data-v-0f00adf4 {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  width: 750rpx;
+  height: 220rpx;
+  box-sizing: border-box;
+}
+.cart__item-image.data-v-0f00adf4 {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 12rpx;
+  margin-left: 16rpx;
+  flex-shrink: 0;
+}
+.cart__item-info.data-v-0f00adf4 {
+  flex: 1;
+  margin-left: 16rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 160rpx;
+  overflow: hidden;
+}
+.cart__item-name.data-v-0f00adf4 {
+  font-size: 28rpx;
+  color: #333333;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+.cart__item-spec.data-v-0f00adf4 {
+  font-size: 24rpx;
+  color: #999999;
+  margin-top: 8rpx;
+}
+.cart__item-bottom.data-v-0f00adf4 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+/* 删除按钮 */
+.cart__item-delete.data-v-0f00adf4 {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 130rpx;
+  height: 100%;
+  background-color: #ee0a24;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cart__item-delete-text.data-v-0f00adf4 {
+  font-size: 28rpx;
+  color: #ffffff;
+}
+/* 底部结算栏 */
+.cart__footer.data-v-0f00adf4 {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100rpx;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24rpx;
+  box-sizing: border-box;
+  border-top: 1rpx solid #eeeeee;
+  z-index: 999;
+  box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+.cart__footer-left.data-v-0f00adf4 {
+  display: flex;
+  align-items: center;
+}
+.cart__footer-select-text.data-v-0f00adf4 {
+  font-size: 24rpx;
+  color: #333333;
+  margin-left: 10rpx;
+}
+.cart__footer-right.data-v-0f00adf4 {
+  display: flex;
+  align-items: center;
+}
+.cart__footer-total.data-v-0f00adf4 {
+  display: flex;
+  align-items: baseline;
+  margin-right: 24rpx;
+}
+.cart__footer-total-label.data-v-0f00adf4 {
+  font-size: 24rpx;
+  color: #333333;
+}
+.cart__footer-btn.data-v-0f00adf4 {
+  width: 200rpx;
+  height: 72rpx;
+  background: linear-gradient(135deg, #ff6600 0%, #cc5200 100%);
+  border-radius: 999rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 12rpx rgba(255, 106, 0, 0.3);
+}
+.cart__footer-btn--disabled.data-v-0f00adf4 {
+  opacity: 0.5;
+  background: #cccccc;
+  box-shadow: none;
+}
+.cart__footer-btn-text.data-v-0f00adf4 {
+  font-size: 28rpx;
+  color: #ffffff;
+  font-weight: bold;
+}

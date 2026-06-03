@@ -1,0 +1,72 @@
+@charset "UTF-8";
+/* 全局样式变量 */
+/* 主题色 */
+/* 文字颜色 */
+/* 背景色 */
+/* 边框颜色 */
+/* 价格颜色 */
+/* 成功/警告/错误 */
+/* 间距 */
+/* 字体大小 */
+/* 圆角 */
+.login-page.data-v-4586967a {
+  min-height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 32rpx;
+}
+/* Logo 区域 */
+.logo-section.data-v-4586967a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 200rpx;
+}
+.logo-section__image.data-v-4586967a {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 16rpx;
+}
+.logo-section__title.data-v-4586967a {
+  font-size: 44rpx;
+  color: #333333;
+  font-weight: bold;
+  margin-top: 32rpx;
+}
+.logo-section__desc.data-v-4586967a {
+  font-size: 24rpx;
+  color: #999999;
+  margin-top: 10rpx;
+}
+/* 登录按钮 */
+.login-section.data-v-4586967a {
+  width: 100%;
+  margin-top: 120rpx;
+}
+.login-btn.data-v-4586967a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ff6600;
+  border-radius: 999rpx;
+  padding: 24rpx;
+}
+.login-btn__icon.data-v-4586967a {
+  font-size: 36rpx;
+  margin-right: 16rpx;
+}
+.login-btn__text.data-v-4586967a {
+  font-size: 32rpx;
+  color: #ffffff;
+  font-weight: bold;
+}
+/* 提示 */
+.tips-section.data-v-4586967a {
+  margin-top: 48rpx;
+}
+.tips-section__text.data-v-4586967a {
+  font-size: 20rpx;
+  color: #cccccc;
+}

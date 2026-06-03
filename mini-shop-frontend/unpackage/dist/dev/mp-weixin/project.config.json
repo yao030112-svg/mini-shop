@@ -1,0 +1,8 @@
+{
+  "appid": "wxf00e6e9e73e828d1",
+  "projectname": "迷你商城",
+  "setting": {
+    "minifyWXML": true,
+    "urlCheck": false
+  }
+}

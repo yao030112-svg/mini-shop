@@ -1,0 +1,35 @@
+@charset "UTF-8";
+/* 全局样式变量 */
+/* 主题色 */
+/* 文字颜色 */
+/* 背景色 */
+/* 边框颜色 */
+/* 价格颜色 */
+/* 成功/警告/错误 */
+/* 间距 */
+/* 字体大小 */
+/* 圆角 */
+.price.data-v-f2e8df04 {
+  display: inline-flex;
+  align-items: baseline;
+  color: #ff3300;
+  font-weight: bold;
+}
+.price--small .price__symbol.data-v-f2e8df04 {
+  font-size: 20rpx;
+}
+.price--small .price__value.data-v-f2e8df04 {
+  font-size: 24rpx;
+}
+.price--normal .price__symbol.data-v-f2e8df04 {
+  font-size: 24rpx;
+}
+.price--normal .price__value.data-v-f2e8df04 {
+  font-size: 32rpx;
+}
+.price--large .price__symbol.data-v-f2e8df04 {
+  font-size: 28rpx;
+}
+.price--large .price__value.data-v-f2e8df04 {
+  font-size: 36rpx;
+}

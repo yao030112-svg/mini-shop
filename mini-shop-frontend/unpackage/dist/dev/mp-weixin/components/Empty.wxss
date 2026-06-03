@@ -1,0 +1,39 @@
+@charset "UTF-8";
+/* 全局样式变量 */
+/* 主题色 */
+/* 文字颜色 */
+/* 背景色 */
+/* 边框颜色 */
+/* 价格颜色 */
+/* 成功/警告/错误 */
+/* 间距 */
+/* 字体大小 */
+/* 圆角 */
+.empty.data-v-9ec67afc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120rpx 0;
+}
+.empty__icon.data-v-9ec67afc {
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: 24rpx;
+}
+.empty__default-icon.data-v-9ec67afc {
+  width: 200rpx;
+  height: 200rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24rpx;
+}
+.empty__default-icon-text.data-v-9ec67afc {
+  font-size: 120rpx;
+  color: #cccccc;
+}
+.empty__text.data-v-9ec67afc {
+  font-size: 28rpx;
+  color: #999999;
+}

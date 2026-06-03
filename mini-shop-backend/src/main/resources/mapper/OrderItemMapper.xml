@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.minishop.mapper.OrderItemMapper">
+
+    <!-- 结果映射 -->
+    <resultMap id="OrderItemResultMap" type="com.minishop.entity.OrderItem">
+        <id property="id" column="id"/>
+        <result property="orderId" column="order_id"/>
+        <result property="skuId" column="sku_id"/>
+        <result property="productName" column="product_name"/>
+        <result property="skuSpecDesc" column="sku_spec_desc"/>
+        <result property="price" column="price"/>
+        <result property="quantity" column="quantity"/>
+        <result property="image" column="image"/>
+    </resultMap>
+
+    <!-- 批量插入订单项 -->
+    <insert id="batchInsert">
+        INSERT INTO order_item (order_id, sku_id, product_name, sku_spec_desc, price, quantity, image)
+        VALUES
+        <foreach collection="items" item="item" separator=",">
+            (#{item.orderId}, #{item.skuId}, #{item.productName}, #{item.skuSpecDesc},
+             #{item.price}, #{item.quantity}, #{item.image})
+        </foreach>
+    </insert>
+
+    <!-- 根据订单ID查询订单项列表 -->
+    <select id="selectByOrderId" resultMap="OrderItemResultMap">
+        SELECT id, order_id, sku_id, product_name, sku_spec_desc, price, quantity, image
+        FROM order_item
+        WHERE order_id = #{orderId}
+    </select>
+
+</mapper>

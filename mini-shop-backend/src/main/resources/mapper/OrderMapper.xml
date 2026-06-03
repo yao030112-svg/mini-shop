@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.minishop.mapper.OrderMapper">
+
+    <!-- 结果映射 -->
+    <resultMap id="OrderResultMap" type="com.minishop.entity.Order">
+        <id property="id" column="id"/>
+        <result property="orderNo" column="order_no"/>
+        <result property="userId" column="user_id"/>
+        <result property="totalAmount" column="total_amount"/>
+        <result property="status" column="status"/>
+        <result property="addressSnapshot" column="address_snapshot"/>
+        <result property="paymentTime" column="payment_time"/>
+        <result property="shippingTime" column="shipping_time"/>
+        <result property="completeTime" column="complete_time"/>
+        <result property="cancelTime" column="cancel_time"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <!-- 新增订单 -->
+    <insert id="insert" parameterType="com.minishop.entity.Order" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO orders (order_no, user_id, total_amount, status, address_snapshot)
+        VALUES (#{orderNo}, #{userId}, #{totalAmount}, #{status}, #{addressSnapshot})
+    </insert>
+
+    <!-- 根据ID查询订单 -->
+    <select id="findById" resultMap="OrderResultMap">
+        SELECT id, order_no, user_id, total_amount, status, address_snapshot,
+               payment_time, shipping_time, complete_time, cancel_time,
+               create_time, update_time
+        FROM orders
+        WHERE id = #{id}
+    </select>
+
+    <!-- 根据订单编号查询订单 -->
+    <select id="findByOrderNo" resultMap="OrderResultMap">
+        SELECT id, order_no, user_id, total_amount, status, address_snapshot,
+               payment_time, shipping_time, complete_time, cancel_time,
+               create_time, update_time
+        FROM orders
+        WHERE order_no = #{orderNo}
+    </select>
+
+    <!-- 查询用户订单列表 -->
+    <select id="selectByUserId" resultMap="OrderResultMap">
+        SELECT id, order_no, user_id, total_amount, status, address_snapshot,
+               payment_time, shipping_time, complete_time, cancel_time,
+               create_time, update_time
+        FROM orders
+        WHERE user_id = #{userId}
+        ORDER BY create_time DESC
+    </select>
+
+    <!-- 根据用户ID和状态查询订单列表（status为null时查全部） -->
+    <select id="selectByUserIdAndStatus" resultMap="OrderResultMap">
+        SELECT id, order_no, user_id, total_amount, status, address_snapshot,
+               payment_time, shipping_time, complete_time, cancel_time,
+               create_time, update_time
+        FROM orders
+        WHERE user_id = #{userId}
+        <if test="status != null">
+            AND status = #{status}
+        </if>
+        ORDER BY create_time DESC
+    </select>
+
+    <!-- 更新订单状态 -->
+    <update id="updateStatus">
+        UPDATE orders
+        SET status = #{status}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 更新支付时间 -->
+    <update id="updatePaymentTime">
+        UPDATE orders
+        SET payment_time = #{paymentTime}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 查询超时未支付的订单 -->
+    <select id="selectTimeoutOrders" resultMap="OrderResultMap">
+        SELECT id, order_no, user_id, total_amount, status, address_snapshot,
+               payment_time, shipping_time, complete_time, cancel_time,
+               create_time, update_time
+        FROM orders
+        WHERE status = 0 AND create_time &lt; #{deadline}
+    </select>
+
+    <!-- 管理员查询订单列表（支持 status、userId 筛选） -->
+    <select id="selectAdminList" resultMap="OrderResultMap">
+        SELECT id, order_no, user_id, total_amount, status, address_snapshot,
+               payment_time, shipping_time, complete_time, cancel_time,
+               create_time, update_time
+        FROM orders
+        <where>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+            <if test="userId != null">
+                AND user_id = #{userId}
+            </if>
+        </where>
+        ORDER BY create_time DESC
+    </select>
+
+    <!-- 更新发货时间 -->
+    <update id="updateShippingTime">
+        UPDATE orders
+        SET shipping_time = #{shippingTime}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 统计所有订单数量 -->
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM orders
+    </select>
+
+    <!-- 统计总收入（已支付、已发货、已完成状态的订单） -->
+    <select id="sumTotalRevenue" resultType="java.math.BigDecimal">
+        SELECT COALESCE(SUM(total_amount), 0)
+        FROM orders
+        WHERE status IN (1, 2, 3)
+    </select>
+
+    <!-- 统计指定时间范围内的订单数量 -->
+    <select id="countByDateRange" resultType="int">
+        SELECT COUNT(*)
+        FROM orders
+        WHERE create_time BETWEEN #{startTime} AND #{endTime}
+    </select>
+
+    <!-- 统计指定时间范围内的收入 -->
+    <select id="sumRevenueByDateRange" resultType="java.math.BigDecimal">
+        SELECT COALESCE(SUM(total_amount), 0)
+        FROM orders
+        WHERE status IN (1, 2, 3)
+          AND create_time BETWEEN #{startTime} AND #{endTime}
+    </select>
+
+</mapper>
