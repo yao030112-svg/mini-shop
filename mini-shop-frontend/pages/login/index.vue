@@ -1,24 +1,25 @@
 <template>
   <view class="login-page">
-    <!-- Logo 区域 -->
     <view class="logo-section">
       <image class="logo-section__image" src="/static/images/logo.png" mode="aspectFit" />
       <text class="logo-section__title">迷你商城</text>
-      <text class="logo-section__desc">登录后享受更多服务</text>
+      <text class="logo-section__desc">使用微信资料登录</text>
     </view>
 
-    <!-- 登录按钮 -->
     <view class="login-section">
-      <!-- 普通按钮，直接登录 -->
-      <button class="login-btn" @click="handleLogin">
-        <text class="login-btn__icon">🔐</text>
+      <button class="login-btn" open-type="chooseAvatar" @chooseavatar="handleChooseAvatar">
+        <text class="login-btn__text">选择头像</text>
+      </button>
+      <input
+        class="nickname-input"
+        type="nickname"
+        placeholder="请输入微信昵称"
+        v-model="nickname"
+      />
+      <image v-if="avatarUrl" class="avatar-preview" :src="avatarUrl" mode="aspectFill" />
+      <button class="login-btn login-btn--primary" @click="handleLogin">
         <text class="login-btn__text">微信一键登录</text>
       </button>
-    </view>
-
-    <!-- 提示 -->
-    <view class="tips-section">
-      <text class="tips-section__text">登录即表示同意《用户协议》和《隐私政策》</text>
     </view>
   </view>
 </template>
@@ -27,49 +28,47 @@
 export default {
   data() {
     return {
-      loading: false
+      loading: false,
+      nickname: '',
+      avatarUrl: ''
     }
   },
 
   methods: {
-    // 微信登录（静默登录，不需要授权弹窗）
+    handleChooseAvatar(e) {
+      this.avatarUrl = e.detail.avatarUrl
+    },
+
     async handleLogin() {
       if (this.loading) return
-      
+      if (!this.avatarUrl) {
+        uni.showToast({ title: '请先选择头像', icon: 'none' })
+        return
+      }
+      if (!this.nickname) {
+        uni.showToast({ title: '请输入微信昵称', icon: 'none' })
+        return
+      }
+
       this.loading = true
-      
+      uni.showLoading({ title: '登录中...' })
+
       try {
-        uni.showLoading({ title: '登录中...' })
-        
-        console.log('开始微信登录...')
-        
-        // 调用 store 中的 wxLogin action（获取 code 并发送到后端）
-        const loginRes = await this.$store.dispatch('user/wxLogin')
-        
-        console.log('登录成功，token:', loginRes.data?.token)
-        console.log('用户信息:', loginRes.data)
-        
-        uni.hideLoading()
+        await this.$store.dispatch('user/wxLogin', {
+          nickName: this.nickname,
+          avatarUrl: this.avatarUrl
+        })
+
         uni.showToast({ title: '登录成功', icon: 'success' })
-        
-        // 登录成功后返回上一页
         setTimeout(() => {
           uni.navigateBack({
-            fail: () => {
-              // 如果没有上一页，跳转到首页
-              uni.switchTab({ url: '/pages/index/index' })
-            }
+            fail: () => uni.switchTab({ url: '/pages/user/index' })
           })
-        }, 1000)
+        }, 800)
       } catch (err) {
-        uni.hideLoading()
-        console.error('登录失败详情:', err)
-        uni.showToast({ 
-          title: err.errMsg || err.message || '登录失败，请重试', 
-          icon: 'none',
-          duration: 3000
-        })
+        uni.showToast({ title: err.errMsg || err.message || '登录失败', icon: 'none' })
       } finally {
+        uni.hideLoading()
         this.loading = false
       }
     }
@@ -118,35 +117,45 @@ export default {
 .login-section {
   width: 100%;
   margin-top: 120rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .login-btn {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: $primary-color;
   border-radius: $border-radius-round;
   padding: $spacing-md;
-
-  &__icon {
-    font-size: 36rpx;
-    margin-right: $spacing-sm;
-  }
+  margin-bottom: $spacing-md;
 
   &__text {
     font-size: $font-size-lg;
     color: #ffffff;
     font-weight: bold;
   }
+
+  &--primary {
+    margin-top: $spacing-lg;
+  }
 }
 
-/* 提示 */
-.tips-section {
-  margin-top: $spacing-xl;
+.nickname-input {
+  width: 100%;
+  padding: $spacing-md;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-md;
+  font-size: $font-size-md;
+  margin-bottom: $spacing-md;
+}
 
-  &__text {
-    font-size: $font-size-xs;
-    color: $text-color-placeholder;
-  }
+.avatar-preview {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  margin: $spacing-md 0;
 }
 </style>

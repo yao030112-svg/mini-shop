@@ -44,29 +44,39 @@
 .login-section.data-v-4586967a {
   width: 100%;
   margin-top: 120rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .login-btn.data-v-4586967a {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #ff6600;
   border-radius: 999rpx;
   padding: 24rpx;
-}
-.login-btn__icon.data-v-4586967a {
-  font-size: 36rpx;
-  margin-right: 16rpx;
+  margin-bottom: 24rpx;
 }
 .login-btn__text.data-v-4586967a {
   font-size: 32rpx;
   color: #ffffff;
   font-weight: bold;
 }
-/* 提示 */
-.tips-section.data-v-4586967a {
-  margin-top: 48rpx;
+.login-btn--primary.data-v-4586967a {
+  margin-top: 32rpx;
 }
-.tips-section__text.data-v-4586967a {
-  font-size: 20rpx;
-  color: #cccccc;
+.nickname-input.data-v-4586967a {
+  width: 100%;
+  padding: 24rpx;
+  border: 1px solid #eeeeee;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  margin-bottom: 24rpx;
+}
+.avatar-preview.data-v-4586967a {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  margin: 24rpx 0;
 }

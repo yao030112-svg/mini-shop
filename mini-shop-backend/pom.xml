@@ -21,6 +21,9 @@
         <java.version>11</java.version>
         <mybatis-spring-boot.version>2.3.2</mybatis-spring-boot.version>
         <jjwt.version>0.9.1</jjwt.version>
+        <!-- 强制使用新版Selenium，覆盖Spring Boot的版本管理 -->
+        <selenium.version>4.15.0</selenium.version>
+        <selenium-java.version>4.15.0</selenium-java.version>
     </properties>
 
     <dependencies>
@@ -91,6 +94,35 @@
             <version>1.8.2</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Selenium WebDriver for browser automation -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.15.0</version>
+        </dependency>
+
+        <!-- WebDriver Manager for automatic driver download -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.6.2</version>
+        </dependency>
+
+        <!-- Jackson for JSON processing -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+
+        <!-- Apache HttpClient 5 (required for WebDriverManager) -->
+        <dependency>
+            <groupId>org.apache.httpcomponents.client5</groupId>
+            <artifactId>httpclient5</artifactId>
+            <version>5.2.1</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>

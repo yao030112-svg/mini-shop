@@ -3,7 +3,7 @@
  * 基于 uni.request，统一处理 Token、错误码、loading
  */
 
-const BASE_URL = 'http://localhost:8090'
+const BASE_URL = 'http://127.0.0.1:8090'
 
 // 当前正在进行的请求数量（用于控制 loading 显示）
 let requestCount = 0

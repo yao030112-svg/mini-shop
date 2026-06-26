@@ -3,7 +3,7 @@
  * 基于 uni.request，统一处理 Token、错误码、loading
  */
 
-const BASE_URL = 'http://localhost:8090'
+const BASE_URL = 'http://127.0.0.1:8090'
 
 // 当前正在进行的请求数量（用于控制 loading 显示）
 let requestCount = 0
@@ -57,7 +57,7 @@ function request(options) {
         'Content-Type': 'application/json',
         ...options.header
       },
-      timeout: 30000, // 设置30秒超时（微信API可能需要较长时间）
+      timeout: 60000, // 放宽首次加载超时，避免开发工具启动阶段误判
       success: (res) => {
         const data = res.data
 

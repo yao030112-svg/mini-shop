@@ -23,6 +23,8 @@ wx:
     # 微信登录接口地址
     code2session-url: https://api.weixin.qq.com/sns/jscode2session
 
+
+
 logging:
   level:
     com.minishop: debug

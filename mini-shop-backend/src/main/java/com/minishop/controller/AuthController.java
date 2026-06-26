@@ -26,12 +26,12 @@ public class AuthController {
     /**
      * 微信登录接口
      *
-     * @param request 包含微信登录 code 的请求体
+     * @param request 包含微信登录 code、昵称和头像的请求体
      * @return 包含 token 和用户信息的响应
      */
     @PostMapping("/wx-login")
     public Result<LoginVO> wxLogin(@Valid @RequestBody WxLoginRequest request) {
-        LoginVO loginVO = authService.wxLogin(request.getCode());
+        LoginVO loginVO = authService.wxLogin(request.getCode(), request.getNickname(), request.getAvatarUrl());
         return Result.success(loginVO);
     }
 

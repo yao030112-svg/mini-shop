@@ -11845,9 +11845,9 @@ module.exports = Array.isArray || function (arr) {
 
 /***/ }),
 /* 30 */
-/*!************************************************!*\
-  !*** D:/小程序开发练习/mini-shop-frontend/pages.json ***!
-  \************************************************/
+/*!*********************************************************!*\
+  !*** D:/Java项目/mini-shop/mini-shop-frontend/pages.json ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -11991,9 +11991,9 @@ function normalizeComponent (
 
 /***/ }),
 /* 37 */
-/*!****************************************************!*\
-  !*** D:/小程序开发练习/mini-shop-frontend/store/index.js ***!
-  \****************************************************/
+/*!*************************************************************!*\
+  !*** D:/Java项目/mini-shop/mini-shop-frontend/store/index.js ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13277,9 +13277,9 @@ module.exports = index_cjs;
 
 /***/ }),
 /* 39 */
-/*!***********************************************************!*\
-  !*** D:/小程序开发练习/mini-shop-frontend/store/modules/user.js ***!
-  \***********************************************************/
+/*!********************************************************************!*\
+  !*** D:/Java项目/mini-shop/mini-shop-frontend/store/modules/user.js ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13292,16 +13292,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 40));
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 42));
 var _auth = __webpack_require__(/*! @/api/auth */ 43);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var _default = {
   namespaced: true,
   state: {
     token: uni.getStorageSync('token') || '',
-    userInfo: null
+    userInfo: uni.getStorageSync('userInfo') || null
   },
   mutations: {
     SET_TOKEN: function SET_TOKEN(state, token) {
@@ -13310,57 +13307,47 @@ var _default = {
     },
     SET_USER_INFO: function SET_USER_INFO(state, userInfo) {
       state.userInfo = userInfo;
+      uni.setStorageSync('userInfo', userInfo);
     },
     CLEAR_USER: function CLEAR_USER(state) {
       state.token = '';
       state.userInfo = null;
       uni.removeStorageSync('token');
+      uni.removeStorageSync('userInfo');
     }
   },
   actions: {
-    /**
-     * 微信登录
-     * 调用 wx.login 获取 code，发送到后端换取 token
-     */
     wxLogin: function wxLogin(_ref) {
       var _arguments = arguments;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-        var commit, userInfo, loginRes, res;
+        var commit, profile, loginRes, res;
         return _regenerator.default.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 commit = _ref.commit;
-                userInfo = _arguments.length > 1 && _arguments[1] !== undefined ? _arguments[1] : null;
+                profile = _arguments.length > 1 && _arguments[1] !== undefined ? _arguments[1] : null;
                 _context.next = 4;
                 return new Promise(function (resolve, reject) {
                   uni.login({
                     provider: 'weixin',
-                    success: function success(res) {
-                      return resolve(res);
-                    },
-                    fail: function fail(err) {
-                      return reject(err);
-                    }
+                    success: resolve,
+                    fail: reject
                   });
                 });
               case 4:
                 loginRes = _context.sent;
                 _context.next = 7;
-                return (0, _auth.wxLogin)(loginRes.code);
+                return (0, _auth.wxLogin)(loginRes.code, profile);
               case 7:
                 res = _context.sent;
                 commit('SET_TOKEN', res.data.token);
-
-                // 如果有用户信息，保存到 store
-                if (userInfo) {
-                  commit('SET_USER_INFO', _objectSpread(_objectSpread({}, res.data.userInfo), {}, {
-                    nickName: userInfo.nickName,
-                    avatarUrl: userInfo.avatarUrl
-                  }));
-                } else if (res.data.userInfo) {
-                  commit('SET_USER_INFO', res.data.userInfo);
-                }
+                commit('SET_USER_INFO', {
+                  userId: res.data.userId,
+                  nickname: res.data.nickname,
+                  avatarUrl: res.data.avatarUrl,
+                  role: res.data.role
+                });
                 return _context.abrupt("return", res);
               case 11:
               case "end":
@@ -13370,9 +13357,6 @@ var _default = {
         }, _callee);
       }))();
     },
-    /**
-     * 获取用户信息
-     */
     getUserInfo: function getUserInfo(_ref2) {
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
         var commit, res;
@@ -13395,9 +13379,6 @@ var _default = {
         }, _callee2);
       }))();
     },
-    /**
-     * 退出登录
-     */
     logout: function logout(_ref3) {
       var commit = _ref3.commit;
       commit('CLEAR_USER');
@@ -13783,9 +13764,9 @@ module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exp
 
 /***/ }),
 /* 43 */
-/*!*************************************************!*\
-  !*** D:/小程序开发练习/mini-shop-frontend/api/auth.js ***!
-  \*************************************************/
+/*!**********************************************************!*\
+  !*** D:/Java项目/mini-shop/mini-shop-frontend/api/auth.js ***!
+  \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13799,44 +13780,29 @@ exports.adminLogin = adminLogin;
 exports.getUserInfo = getUserInfo;
 exports.wxLogin = wxLogin;
 var _request = __webpack_require__(/*! ./request */ 44);
-/**
- * 认证相关 API
- */
-
-/**
- * 微信登录
- * @param {string} code - 微信登录 code
- */
 function wxLogin(code) {
+  var profile = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   return (0, _request.post)('/api/auth/wx-login', {
-    code: code
+    code: code,
+    nickname: profile.nickName || '',
+    avatarUrl: profile.avatarUrl || ''
   });
 }
-
-/**
- * 管理员登录
- * @param {string} username - 用户名
- * @param {string} password - 密码
- */
 function adminLogin(username, password) {
   return (0, _request.post)('/api/auth/admin-login', {
     username: username,
     password: password
   });
 }
-
-/**
- * 获取用户信息
- */
 function getUserInfo() {
   return (0, _request.get)('/api/user/info');
 }
 
 /***/ }),
 /* 44 */
-/*!****************************************************!*\
-  !*** D:/小程序开发练习/mini-shop-frontend/api/request.js ***!
-  \****************************************************/
+/*!*************************************************************!*\
+  !*** D:/Java项目/mini-shop/mini-shop-frontend/api/request.js ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13860,7 +13826,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
  * 基于 uni.request，统一处理 Token、错误码、loading
  */
 
-var BASE_URL = 'http://localhost:8090';
+var BASE_URL = 'http://127.0.0.1:8090';
 
 // 当前正在进行的请求数量（用于控制 loading 显示）
 var requestCount = 0;
@@ -13914,8 +13880,8 @@ function request(options) {
         'Authorization': token ? "Bearer ".concat(token) : '',
         'Content-Type': 'application/json'
       }, options.header),
-      timeout: 30000,
-      // 设置30秒超时（微信API可能需要较长时间）
+      timeout: 60000,
+      // 放宽首次加载超时，避免开发工具启动阶段误判
       success: function success(res) {
         var data = res.data;
 
@@ -14014,9 +13980,9 @@ exports.default = _default;
 
 /***/ }),
 /* 45 */
-/*!***********************************************************!*\
-  !*** D:/小程序开发练习/mini-shop-frontend/store/modules/cart.js ***!
-  \***********************************************************/
+/*!********************************************************************!*\
+  !*** D:/Java项目/mini-shop/mini-shop-frontend/store/modules/cart.js ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14233,9 +14199,9 @@ exports.default = _default;
 
 /***/ }),
 /* 46 */
-/*!*************************************************!*\
-  !*** D:/小程序开发练习/mini-shop-frontend/api/cart.js ***!
-  \*************************************************/
+/*!**********************************************************!*\
+  !*** D:/Java项目/mini-shop/mini-shop-frontend/api/cart.js ***!
+  \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14322,9 +14288,9 @@ function toggleSelect(id, selected) {
 /* 51 */,
 /* 52 */,
 /* 53 */
-/*!****************************************************!*\
-  !*** D:/小程序开发练习/mini-shop-frontend/api/product.js ***!
-  \****************************************************/
+/*!*************************************************************!*\
+  !*** D:/Java项目/mini-shop/mini-shop-frontend/api/product.js ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14442,12 +14408,10 @@ function getCategoryList() {
 /* 89 */,
 /* 90 */,
 /* 91 */,
-/* 92 */,
-/* 93 */,
-/* 94 */
-/*!****************************************************!*\
-  !*** D:/小程序开发练习/mini-shop-frontend/api/address.js ***!
-  \****************************************************/
+/* 92 */
+/*!*************************************************************!*\
+  !*** D:/Java项目/mini-shop/mini-shop-frontend/api/address.js ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14507,10 +14471,10 @@ function setDefault(id) {
 }
 
 /***/ }),
-/* 95 */
-/*!**************************************************!*\
-  !*** D:/小程序开发练习/mini-shop-frontend/api/order.js ***!
-  \**************************************************/
+/* 93 */
+/*!***********************************************************!*\
+  !*** D:/Java项目/mini-shop/mini-shop-frontend/api/order.js ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14577,6 +14541,8 @@ function cancelOrder(id) {
 }
 
 /***/ }),
+/* 94 */,
+/* 95 */,
 /* 96 */,
 /* 97 */,
 /* 98 */,
@@ -14631,12 +14597,10 @@ function cancelOrder(id) {
 /* 147 */,
 /* 148 */,
 /* 149 */,
-/* 150 */,
-/* 151 */,
-/* 152 */
-/*!**************************************************!*\
-  !*** D:/小程序开发练习/mini-shop-frontend/api/admin.js ***!
-  \**************************************************/
+/* 150 */
+/*!***********************************************************!*\
+  !*** D:/Java项目/mini-shop/mini-shop-frontend/api/admin.js ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

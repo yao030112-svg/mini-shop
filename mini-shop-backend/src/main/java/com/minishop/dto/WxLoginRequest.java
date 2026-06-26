@@ -15,4 +15,14 @@ public class WxLoginRequest {
      */
     @NotBlank(message = "微信登录code不能为空")
     private String code;
+
+    /**
+     * 微信昵称
+     */
+    private String nickname;
+
+    /**
+     * 微信头像URL
+     */
+    private String avatarUrl;
 }
